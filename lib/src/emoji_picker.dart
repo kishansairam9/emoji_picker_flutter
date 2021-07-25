@@ -8,6 +8,7 @@ import 'package:emoji_picker_flutter/src/default_emoji_picker_view.dart';
 import 'package:emoji_picker_flutter/src/emoji.dart';
 import 'package:emoji_picker_flutter/src/emoji_view_state.dart';
 import 'package:emoji_picker_flutter/src/recent_emoji.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -207,7 +208,7 @@ class _EmojiPickerState extends State<EmojiPicker> {
   // Check if emoji is available on current platform
   Future<Map<String, String>?> _getPlatformAvailableEmoji(
       Map<String, String> emoji) async {
-    if (Platform.isAndroid) {
+    if (!kIsWeb && Platform.isAndroid) {
       Map<String, String>? filtered = {};
       var delimiter = '|';
       try {
